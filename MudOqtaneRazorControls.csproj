@@ -25,4 +25,8 @@
     <PackageReference Include="Oqtane.Shared" Version="5.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controls\Module\Base - Copy\" />
+  </ItemGroup>
+
 </Project>

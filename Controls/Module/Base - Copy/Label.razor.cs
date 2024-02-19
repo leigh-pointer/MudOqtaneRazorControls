@@ -16,9 +16,9 @@ namespace MudOqtaneRazorControls.Controls.Module
         [Parameter]
         public string HelpText { get; set; } // optional - tooltip for this label
 
-        private string _spanclass;
-        private string _labelclass;
-        private string _helptext = string.Empty;
+        protected string _spanclass;
+        protected string _labelclass;
+        protected string _helptext = string.Empty;
 
         protected override void OnParametersSet()
         {

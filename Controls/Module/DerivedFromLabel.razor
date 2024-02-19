@@ -1,13 +1,15 @@
+﻿@* 
+    Using Base Classes helps us extend the Component.
+ *@
 @inherits MudOqtaneRazorControls.Controls.Module.Base.LabelBase
 
 @if (!string.IsNullOrEmpty(HelpText))
 {
     <MudTooltip Text="@HelpText" Arrow="true" Placement="Placement.Bottom">
-        <label for="@For" class="@_labelclass">@ChildContent</label> <MudIcon Icon="@MB.Icons.Material.Filled.Help"Size="Size.Small" />
+        <label for="@For" class="@_labelclass">@ChildContent</label> <MudIcon Icon="@MB.Icons.Material.Filled.Help" Size="Size.Small" />
     </MudTooltip>
 }
 else
 {
     <label for="@For" class="@_labelclass">@ChildContent</label>
 }
-
