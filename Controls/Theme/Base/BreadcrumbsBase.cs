@@ -1,15 +1,15 @@
 ﻿using MudBlazor;
 using Oqtane.Themes;
 using Oqtane.UI;
-namespace MudOqtaneRazorControls.Controls.Theme
+namespace MudOqtaneRazorControls.Controls.Theme.Base
 {
-    public partial class Breadcrumbs : ThemeControlBase
+    public class BreadcrumbsBase : ThemeControlBase
     {
-        protected List<BreadcrumbItem>? _items;
+        protected List<BreadcrumbItem>? Items;
 
         protected override void OnInitialized()
         {
-            _items = GetBreadCrumbPages().Reverse()
+            Items = GetBreadCrumbPages().Reverse()
                 .Select(bc => new BreadcrumbItem(bc.Name, href: bc.Path))
                 .ToList();
 

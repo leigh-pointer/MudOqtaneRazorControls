@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Localization;
 using Oqtane.Modules;
 namespace MudOqtaneRazorControls.Controls.Module.Base;
-public class AuditInfo: ModuleControlBase
+public class AuditInfoBase: ModuleControlBase
 {
     [Inject] public IStringLocalizer<Oqtane.Modules.Controls.AuditInfo> Localizer { get; set; }
 

@@ -9,7 +9,7 @@ using System.Text.Json;
 
 namespace MudOqtaneRazorControls.Controls.Module.Base
 {
-    public partial class ActionLink : LocalizableComponent
+    public partial class ActionLinkBase : LocalizableComponent
     {
         protected string LinkText = string.Empty;
         private int _moduleId = -1;

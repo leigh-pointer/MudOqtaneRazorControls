@@ -1,0 +1,12 @@
+@using MudOqtaneRazorControls.Controls.Theme.Base
+@inherits LogoBase
+
+@if (file != null)
+{
+    <span class="app-logo">
+        <a href="@PageState.Alias.Path">
+            <img class="img-fluid" src="@file.Url" alt="@PageState.Site.Name" />
+        </a>
+    </span>
+}
+ 

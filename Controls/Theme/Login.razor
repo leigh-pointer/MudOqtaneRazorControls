@@ -1,0 +1,22 @@
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.Extensions.Localization
+@using Oqtane
+@using MudOqtaneRazorControls.Controls.Theme
+@inherits Base.LoginBase
+
+<span class="app-login">
+    <AuthorizeView Roles="@RoleNames.Registered">
+        <Authorizing>
+            <text>...</text>
+        </Authorizing>
+        <Authorized>
+            <button type="button" class="btn btn-primary" @onclick="LogoutUser">@Localizer["Logout"]</button>
+        </Authorized>
+        <NotAuthorized>
+            @if (ShowLogin)
+            {
+                <button type="button" class="btn btn-primary" @onclick="LoginUser">@SharedLocalizer["Login"]</button>
+            }
+        </NotAuthorized>
+    </AuthorizeView>
+</span>
