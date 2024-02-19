@@ -1,1 +1,23 @@
-﻿
+﻿@using Oqtane.Services
+@using System.Net
+@using System.Text.Json
+@using MudBlazor
+
+@inherits LocalizableComponent
+@inject IUserService UserService
+
+
+@if (_authorized)
+{
+    if (OnClick == null)
+    {
+        @* <NavLink class="@_classname" href="@_url" style="@_style">@((MarkupString)_iconSpan) @_text</NavLink> *@
+        <MudButton Color="Color.Primary" Variant="Variant.Filled" Disabled=Disabled Href="@_url">@((MarkupString)_iconSpan) @_text</MudButton>
+    }
+    else
+    {
+        @* <button type="button" class="@_classname" style="@_style" onclick="@OnClick">@((MarkupString)_iconSpan) @_text</button> *@
+        <MudButton Color="Color.Primary" Variant="Variant.Filled" Disabled=Disabled OnClick="@OnClick">@((MarkupString)_iconSpan) @_text</MudButton>
+
+    }
+}
