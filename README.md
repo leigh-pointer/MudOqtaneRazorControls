@@ -1,4 +1,4 @@
-# MudBlazor Wrapped Oqtane Razor Component Library [MudOqtaneRazorControls]
+# MudBlazor Wrapped Oqtane Razor Component Library [MudOqtaneRazorControls - MORC]
 
 ## Overview
 This project is a Razor Component Library utilizing MudBlazor to wrap existing Oqtane User controls. The primary motivation behind this endeavor is the inherent difficulty in overriding or inheriting from the Oqtane Framework directly. By encapsulating Oqtane controls within MudBlazor components, we aim to provide a more flexible and customizable approach for developers working within the Oqtane ecosystem.
