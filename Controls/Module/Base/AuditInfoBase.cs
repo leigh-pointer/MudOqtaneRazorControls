@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using Oqtane.Modules;
-namespace MudOqtaneRazorControls.Controls.Module;
-public partial class AuditInfo: ModuleControlBase
+namespace MudOqtaneRazorControls.Controls.Module.Base;
+public class AuditInfo: ModuleControlBase
 {
     [Inject] public IStringLocalizer<Oqtane.Modules.Controls.AuditInfo> Localizer { get; set; }
 

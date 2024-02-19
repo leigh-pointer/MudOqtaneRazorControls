@@ -1,0 +1,192 @@
+@* @namespace Oqtane.Modules.Controls *@
+@using System.Text.Json
+@inherits LocalizableComponent
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@using Microsoft.Extensions.Localization
+@using MudBlazor
+@using Oqtane
+@using Oqtane.Models
+@using Oqtane.Security
+
+@if (_visible)
+{
+    <div class="app-actiondialog">
+        <div class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">@Header</h5>
+                        @* <MudIcon Icon="@MB.Icons.Filled.Close" /> *@
+                        <MudButton Color="Color.Default" StartIcon="@MB.Icons.Material.Filled.Close" aria-label="Close" OnClick="DisplayModal" />
+                    </div>
+                    <div class="modal-body">
+                        <p>@Message</p>
+                    </div>
+                    <div class="modal-footer">
+                        @if (!string.IsNullOrEmpty(Action))
+                        {
+                            <MudButton Color="Color.Error" Class="me-2" Variant="Variant.Filled" OnClick="Confirm">@((MarkupString)_iconSpan) @Text</MudButton>
+                        }
+                        <MudButton Color="Color.Secondary" Variant="Variant.Filled" OnClick="DisplayModal">@SharedLocalizer["Cancel"]</MudButton>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@if (_authorized)
+{
+    if (Disabled)
+    {
+        <MudButton Color="Color.Error" Variant="Variant.Filled" Disabled=true>@((MarkupString)_iconSpan) @Text</MudButton>
+    }
+    else
+    {
+        <MudButton Color="Color.Error" Variant="Variant.Filled" OnClick="DisplayModal">@((MarkupString)_iconSpan) @Text</MudButton>
+    }
+}
+
+@code {
+    private bool _visible = false;
+	private List<Permission> _permissions;
+    private bool _editmode = false;
+    private bool _authorized = false;
+    private string _iconSpan = string.Empty;
+    MudDialogInstance MudDialog { get; set; }
+    [Parameter]
+    public string Header { get; set; } // required
+
+    [Parameter]
+    public string Message { get; set; } // required
+
+    [Parameter]
+    public string Text { get; set; } // optional - defaults to Action if not specified
+
+    [Parameter]
+    public string Action { get; set; } // optional
+
+    [Parameter]
+    public SecurityAccessLevel? Security { get; set; } // optional - can be used to explicitly specify SecurityAccessLevel
+
+	[Parameter]
+	public string Permissions { get; set; } // deprecated - use PermissionList instead
+
+	[Parameter]
+	public List<Permission> PermissionList { get; set; } // optional - can be used to specify permissions
+
+    [Parameter]
+    public string Class { get; set; } // optional
+
+    [Parameter]
+    public bool Disabled { get; set; } // optional
+
+    [Parameter]
+    public string EditMode { get; set; } // optional - specifies if an authorized user must be in edit mode to see the action - default is false
+
+    [Parameter]
+    public Action OnClick { get; set; } // required if an Action is specified - executes a method in the calling component
+
+    [Parameter]
+    public string IconName { get; set; } // optional - specifies an icon for the link - default is no icon
+
+	protected override void OnInitialized()
+	{
+		if (!string.IsNullOrEmpty(Permissions))
+		{
+			PermissionList = JsonSerializer.Deserialize<List<Permission>>(Permissions);
+		}
+	}
+	
+	protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        if (string.IsNullOrEmpty(Text))
+        {
+            Text = Action;
+        }
+        if (string.IsNullOrEmpty(Class))
+        {
+            Class = "btn btn-success";
+        }
+
+        if (!string.IsNullOrEmpty(EditMode))
+        {
+            _editmode = bool.Parse(EditMode);
+        }
+
+        if (!string.IsNullOrEmpty(IconName))
+        {
+            if (!IconName.Contains(" "))
+            {
+                IconName = "oi oi-" + IconName;
+            }
+            _iconSpan = $"<span class=\"{IconName}\"></span>&nbsp;";
+        }
+
+        Text = Localize(nameof(Text), Text);
+        Header = Localize(nameof(Header), Header);
+        Message = Localize(nameof(Message), Message);
+
+		_permissions = (PermissionList == null) ? ModuleState.PermissionList : PermissionList;
+        _authorized = IsAuthorized();
+    }
+
+    private bool IsAuthorized()
+    {
+        bool authorized = false;
+        if (PageState.EditMode || !_editmode)
+        {
+            SecurityAccessLevel security = SecurityAccessLevel.Host;
+            if (Security == null)
+            {
+                string typename = ModuleState.ModuleType.Replace(Utilities.GetTypeNameLastSegment(ModuleState.ModuleType, 0) + ",", Action + ",");
+                Type moduleType = Type.GetType(typename);
+                if (moduleType != null)
+                {
+                    var moduleobject = Activator.CreateInstance(moduleType) as IModuleControl;
+                    security = moduleobject.SecurityAccessLevel;
+                }
+                else
+                {
+                    security = SecurityAccessLevel.Anonymous; // occurs when an action does not have a corresponding module control
+                }
+            }
+            else
+            {
+                security = Security.Value;
+            }
+            switch (security)
+            {
+                case SecurityAccessLevel.Anonymous:
+                    authorized = true;
+                    break;
+                case SecurityAccessLevel.View:
+                    authorized = UserSecurity.IsAuthorized(PageState.User,PermissionNames.View, _permissions);
+                    break;
+                case SecurityAccessLevel.Edit:
+                    authorized = UserSecurity.IsAuthorized(PageState.User,PermissionNames.Edit, _permissions);
+                    break;
+                case SecurityAccessLevel.Admin:
+                    authorized = UserSecurity.IsAuthorized(PageState.User, RoleNames.Admin);
+                    break;
+                case SecurityAccessLevel.Host:
+                    authorized = UserSecurity.IsAuthorized(PageState.User, RoleNames.Host);
+                    break;
+            }
+        }
+        return authorized;
+    }
+
+    private void DisplayModal()
+    {
+        _visible = !_visible;
+        StateHasChanged();
+    }
+
+    private void Confirm()
+    {
+        DisplayModal();
+        OnClick();
+    }
+}

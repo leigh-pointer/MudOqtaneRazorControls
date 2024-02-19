@@ -7,21 +7,21 @@ using Oqtane.Shared;
 using System.Net;
 using System.Text.Json;
 
-namespace MudOqtaneRazorControls.Controls.Module
+namespace MudOqtaneRazorControls.Controls.Module.Base
 {
     public partial class ActionLink : LocalizableComponent
     {
-        private string _text = string.Empty;
+        protected string LinkText = string.Empty;
         private int _moduleId = -1;
         private string _path = string.Empty;
         private string _parameters = string.Empty;
-        private string _url = string.Empty;
+        protected string _url = string.Empty;
         private List<Permission> _permissions;
         private bool _editmode = false;
-        private bool _authorized = false;
+        protected bool Authorized = false;
         private string _classname = "btn btn-primary";
         private string _style = string.Empty;
-        private string _iconSpan = string.Empty;
+        protected string IconSpan = string.Empty;
 
         [Parameter]
         public string Action { get; set; } // required
@@ -84,15 +84,15 @@ namespace MudOqtaneRazorControls.Controls.Module
         {
             base.OnParametersSet();
 
-            _text = Action;
+            LinkText = Action;
             if (!string.IsNullOrEmpty(Text))
             {
-                _text = Text;
+                LinkText = Text;
             }
 
             if (IconOnly && !string.IsNullOrEmpty(IconName))
             {
-                _text = string.Empty;
+                LinkText = string.Empty;
             }
 
             _moduleId = ModuleState.ModuleId;
@@ -133,18 +133,18 @@ namespace MudOqtaneRazorControls.Controls.Module
                 {
                     IconName = "oi oi-" + IconName;
                 }
-                _iconSpan = $"<span class=\"{IconName}\"></span>{(IconOnly ? "" : "&nbsp")}";
+                IconSpan = $"<span class=\"{IconName}\"></span>{(IconOnly ? "" : "&nbsp")}";
             }
 
             _permissions = (PermissionList == null) ? ModuleState.PermissionList : PermissionList;
-            _text = Localize(nameof(Text), _text);
+            LinkText = Localize(nameof(Text), LinkText);
 
             _url = EditUrl(_path, _moduleId, Action, _parameters);
             if (!string.IsNullOrEmpty(ReturnUrl))
             {
                 _url += ((_url.Contains("?")) ? "&" : "?") + $"returnurl={WebUtility.UrlEncode(ReturnUrl)}";
             }
-            _authorized = IsAuthorized();
+            Authorized = IsAuthorized();
         }
 
         private bool IsAuthorized()

@@ -18,7 +18,7 @@ namespace MudOqtaneRazorControls.Controls.Module.Base
         public string HelpText { get; set; } // optional - tooltip for this label
 
         protected string _spanclass;
-        protected string _labelclass;
+        protected string LabelClass;
         protected string _helptext = string.Empty;
 
         protected override void OnParametersSet()
@@ -28,7 +28,7 @@ namespace MudOqtaneRazorControls.Controls.Module.Base
             if (!string.IsNullOrEmpty(HelpText))
             {
                 _helptext = Localize(nameof(HelpText), HelpText);
-                _labelclass = "form-label";
+                LabelClass = "form-label";
 
                 var spanclass = (!string.IsNullOrEmpty(Class)) ? " " + Class : "";
                 _spanclass = "app-tooltip" + spanclass;
@@ -36,7 +36,7 @@ namespace MudOqtaneRazorControls.Controls.Module.Base
             else
             {
                 var labelclass = (!string.IsNullOrEmpty(Class)) ? " " + Class : "";
-                _labelclass = "form-label" + labelclass;
+                LabelClass = "form-label" + labelclass;
             }
 
             var text = Localize("Text", String.Empty);
