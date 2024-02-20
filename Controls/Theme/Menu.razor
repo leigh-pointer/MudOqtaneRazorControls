@@ -1,0 +1,16 @@
+﻿@switch (Orientation.ToLower())
+{
+    case "horizontal":
+        <MudOqtaneRazorControls.Controls.Theme.MenuHorizontal />
+        break;
+    default: // Vertical
+        <MudOqtaneRazorControls.Controls.Theme.MenuVertical />
+        break;
+}
+
+@code {
+
+    [Parameter]
+    public string Orientation { get; set; }
+
+}

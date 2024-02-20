@@ -7,14 +7,21 @@ namespace MudOqtaneRazorControls.Controls.Theme.Base
     {
         protected List<BreadcrumbItem>? Items;
 
-        protected override void OnInitialized()
+        protected override void OnParametersSet()
         {
             Items = GetBreadCrumbPages().Reverse()
                 .Select(bc => new BreadcrumbItem(bc.Name, href: bc.Path))
-                .ToList();
-
-            base.OnInitialized();
+                .ToList(); 
+            base.OnParametersSet();
         }
+        //protected override void OnInitialized()
+        //{
+        //    Items = GetBreadCrumbPages().Reverse()
+        //        .Select(bc => new BreadcrumbItem(bc.Name, href: bc.Path))
+        //        .ToList();
+
+        //    base.OnInitialized();
+        //}
 
         private IEnumerable<Oqtane.Models.Page> GetBreadCrumbPages()
         {

@@ -6,6 +6,6 @@
 <MudNavMenu>
     @foreach (var menuPageItem in MenuPages.Where(p => p.ParentId == null))
     {
-        <NavMenuItem MenuItemData="menuPageItem" />
+        <MenuItemVertical MenuItemData="menuPageItem" />
     }
 </MudNavMenu>

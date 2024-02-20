@@ -6,7 +6,7 @@
     <MudNavGroup Title="@MenuItemData.Name" Expanded="false">
         @foreach (var childPage in MenuPages.Where(p => p.ParentId == MenuItemData.PageId))
         {
-            <NavMenuItem MenuItemData="childPage" />
+            <MenuItemVertical MenuItemData="childPage" />
         }
     </MudNavGroup>
 }
