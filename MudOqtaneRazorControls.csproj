@@ -13,14 +13,6 @@
     <PackageTags>Oqtane;MudBlazor;UserControl</PackageTags>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Content Remove="Controls\Theme\PageEdit.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Controls\Theme\PageEdit.razor" />
-  </ItemGroup>
-
 
   <ItemGroup>
     <SupportedPlatform Include="browser" />

@@ -5,7 +5,7 @@ using Oqtane.Shared;
 
 
 namespace MudOqtaneRazorControls.Controls.Theme.Base;
-public class PageEditBase: Oqtane.Themes.ThemeControlBase
+public class PageEditBase : Oqtane.Themes.ThemeControlBase
 {
 
     [Inject] protected NavigationManager NavigationManager { get; set; }
