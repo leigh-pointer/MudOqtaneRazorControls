@@ -1,0 +1,21 @@
+﻿@using Microsoft.AspNetCore.Components.Routing
+@inherits MenuItemsBase
+
+@if (MenuItemData.HasChildren)
+{
+    <MudNavGroup Title="@MenuItemData.Name" Expanded="false">
+        @foreach (var childPage in MenuPages.Where(p => p.ParentId == MenuItemData.PageId))
+        {
+            <NavMenuItem MenuItemData="childPage" />
+        }
+    </MudNavGroup>
+}
+else
+{
+    <MudNavLink Icon="@MenuItemData.Icon" Href="@GetUrl(MenuItemData)" Target="@GetTarget(MenuItemData)" Match="NavLinkMatch.Prefix">@MenuItemData.Name</MudNavLink>
+}
+
+@code {
+    [Parameter]
+    public Oqtane.Models.Page MenuItemData { get; set; }
+}

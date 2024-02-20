@@ -1,0 +1,11 @@
+﻿@using System.Collections.Generic
+@using System.Linq
+@using Oqtane.Models
+@inherits MenuBase
+
+<MudNavMenu>
+    @foreach (var menuPageItem in MenuPages.Where(p => p.ParentId == null))
+    {
+        <NavMenuItem MenuItemData="menuPageItem" />
+    }
+</MudNavMenu>
