@@ -9,13 +9,13 @@ This project is a Razor Component Library utilizing MudBlazor to wrap existing O
 - **Improved Extensibility**: By utilizing MudBlazor, developers gain enhanced extensibility options compared to the native Oqtane controls.
 
 ## Module Controls
-* [x] ActionDialog.razor
-* [x] ActionLink.razor
-* [x] AuditInfo.razor
+* [x] ~~ActionDialog.razor~~
+* [x] ~~ActionLink.razor~~
+* [x] ~~AuditInfo.razor~~
 * [ ] AutoComplete.razor
 * [ ] FileManager.razor
 * [ ] InputList.razor
-* [x] Label.razor
+* [x] ~~Label.razor~~
 * [ ] ModuleMessage.razor
 * [ ] Pager.razor
 * [ ] PermissionGrid.razor
@@ -26,21 +26,21 @@ This project is a Razor Component Library utilizing MudBlazor to wrap existing O
 * [ ] TriStateCheckBox.razor
 
 ## Theme Controls
-* [x] Breadcrumbs.razor
+* [x] ~~Breadcrumbs.razor~~
 * [ ] ControlPanel.razor
 * [ ] LanguageSwitcher.razor
-* [x] Login.razor
-* [x] Logo.razor
-* [x] Menu.razor
+* [x] ~~Login.razor~~
+* [x] ~~Logo.razor~~
+* [x] ~~Menu.razor~~
 * [ ] MenuHorizontal.razor
 * [ ] MenuItemsHorizontal.razor
-* [x] MenuItemsVertical.razor
-* [x] MenuVertical.razor
+* [x] ~~MenuItemsVertical.razor~~
+* [x] ~~MenuVertical.razor~~
 * [ ] UserProfile.razor
 
 ## Theme Container Controls
 * [ ] ModuleActions.razor
-* [ ] ModuleTitle.razor
+* [x] ~~ModuleTitle.razor~~
 
 
 ## Contributing
