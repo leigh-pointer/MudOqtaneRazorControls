@@ -1,0 +1,71 @@
+@using Oqtane.Security
+@inherits ModuleActionsBase 
+@attribute [OqtaneIgnore]
+
+@if (PageState.EditMode && UserSecurity.IsAuthorized(PageState.User, PermissionNames.Edit, PageState.Page.PermissionList) && PageState.Action == Constants.DefaultAction)
+{
+<div class="app-moduleactions py-2 px-3">
+    <MudMenu>
+        @foreach (var action in Actions.Where(item => !item.Name.Contains("Pane")))
+        {
+            if (string.IsNullOrEmpty(action.Name))
+            {
+                <MudDivider Orientation="DividerOrientation.Vertical" />
+            }
+            else
+            {
+                <MudMenuItem Icon="@action.Icon" OnClick="(async () => await ModuleAction(action))">@action.Name</MudMenuItem>
+            }
+        }
+
+        @if (Actions.Where(item => item.Name.Contains("Pane")).Any())
+        {
+            <MudMenu Icon="@MB.Icons.Material.Outlined.Login" Label="Move To &gt;">
+                @foreach (var action in Actions.Where(item => item.Name.Contains("Pane")))
+                {
+                    <MudMenuItem OnClick="(async () => await ModuleAction(action))">@action.Name</MudMenuItem>
+                }
+            </MudMenu>
+        }
+    </MudMenu>
+</div>
+
+@* 	<div class="app-moduleactions py-2 px-3">
+		<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></a>
+        <ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 37px, 0px);" role="button">
+			@foreach (var action in Actions.Where(item => !item.Name.Contains("Pane")))
+			{
+				if (string.IsNullOrEmpty(action.Name))
+				{
+					<li class="dropdown-divider"></li>
+				}
+				else
+				{
+					<li>
+						<a class="dropdown-item" @onclick="(async () => await ModuleAction(action))">
+							<span class="@action.Icon" aria-hidden="true"></span>&nbsp;@action.Name
+						</a>
+					</li>
+				}
+			}
+			@if (Actions.Where(item => item.Name.Contains("Pane")).Any())
+			{
+				<li class="dropdown-submenu">
+					<a class="dropdown-item" onclick="return subMenu(this)">
+						<span class="@MB.Icons.Material.Outlined.Login" aria-hidden="true"></span>&nbsp;Move To &gt;
+					</a>
+					<ul class="dropdown-menu">
+						@foreach (var action in Actions.Where(item => item.Name.Contains("Pane")))
+						{
+							<li>
+								<a class="dropdown-item" @onclick="(async () => await ModuleAction(action))">
+									<span class="@action.Icon" aria-hidden="true"></span>&nbsp;@action.Name
+								</a>
+							</li>
+						}
+					</ul>
+				</li>
+			}
+		</ul>
+	</div> *@
+}
