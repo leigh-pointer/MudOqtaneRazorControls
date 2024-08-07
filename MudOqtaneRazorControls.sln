@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oqtane.Client", "..\oqtane.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Oqtane", "Oqtane", "{D709DBA9-3BB7-4CA5-B6BC-9217BF880B0A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oqtane.Shared", "..\oqtane.framework\Oqtane.Shared\Oqtane.Shared.csproj", "{3640A15E-BFAC-4193-8A4A-E2C5A14DCCE5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,12 +23,17 @@ Global
 		{81C72CC0-054F-4D20-BA40-87CD8DE38D3C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1BF0D198-54B9-4CA5-86E1-AB80FD6592E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1BF0D198-54B9-4CA5-86E1-AB80FD6592E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3640A15E-BFAC-4193-8A4A-E2C5A14DCCE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3640A15E-BFAC-4193-8A4A-E2C5A14DCCE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3640A15E-BFAC-4193-8A4A-E2C5A14DCCE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3640A15E-BFAC-4193-8A4A-E2C5A14DCCE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1BF0D198-54B9-4CA5-86E1-AB80FD6592E6} = {D709DBA9-3BB7-4CA5-B6BC-9217BF880B0A}
+		{3640A15E-BFAC-4193-8A4A-E2C5A14DCCE5} = {D709DBA9-3BB7-4CA5-B6BC-9217BF880B0A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E439D625-71DF-4E6C-9909-F721C92D37D6}
