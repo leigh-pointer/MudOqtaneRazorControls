@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyVersion>0.0.0.1</AssemblyVersion>
@@ -19,11 +19,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.7" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="8.0.7" />
-    <PackageReference Include="MudBlazor" Version="7.6.0" />
-    <PackageReference Include="Oqtane.Client" Version="5.2.0" />
-    <PackageReference Include="Oqtane.Shared" Version="5.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="9.0.1" />
+    <PackageReference Include="MudBlazor" Version="8.0.0" />
+    <PackageReference Include="Oqtane.Client" Version="6.0.1" />
+    <PackageReference Include="Oqtane.Shared" Version="6.0.1" />
   </ItemGroup>
 
 </Project>
